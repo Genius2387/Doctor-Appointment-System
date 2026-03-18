@@ -1,15 +1,17 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+
 import connectDB from "../backend/config/mongodb.js";
 import connectCloudinary from "../backend/config/cloudinary.js";
+
 import userRouter from "../backend/routes/userRoute.js";
 import doctorRouter from "../backend/routes/doctorRoute.js";
 import adminRouter from "../backend/routes/adminRoute.js";
 
 const app = express();
 
-// connect DB & cloudinary
+// connect DB
 connectDB();
 connectCloudinary();
 
@@ -26,5 +28,6 @@ app.get("/", (req, res) => {
   res.send("API Working");
 });
 
-// ✅ THIS LINE IS IMPORTANT
+// ❌ NO app.listen
+// ✅ MUST EXPORT
 export default app;
